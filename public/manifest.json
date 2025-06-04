@@ -1,0 +1,25 @@
+{
+  "short_name": "H BUS",
+  "name": "HAGEREGNA BUS",
+  "icons": [
+    {
+      "src": "images/bus8.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/bus8.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/bus8.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
