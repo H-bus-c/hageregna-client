@@ -52,9 +52,9 @@ const CustomerSearch = ({
     };
   });
   return (
-    <Container maxWidth="lg" >
-      <Grid container spacing={3} >
-        <Grid item xs={12} >
+    <Container maxWidth="lg">
+      <Grid container spacing={3}>
+        <Grid column={12}>
           <Slide direction="down" in timeout={800}>
             <Typography
               variant="h2"
@@ -98,7 +98,7 @@ const CustomerSearch = ({
             </Typography>
           </Fade>
 
-          <Grow in timeout={1600} >
+          <Grow in timeout={1600}>
             <div>
               <AnimatedPaper
                 elevation={6}
@@ -108,7 +108,7 @@ const CustomerSearch = ({
                   pr: responsive.isTablet ? 3 : 1,
                   borderRadius: 4,
                   backgroundColor: "rgba(255, 255, 255, 0.9)",
-                  minWidth:340
+                  minWidth: 340,
                 }}
               >
                 <form onSubmit={formik.handleSubmit}>
@@ -128,8 +128,8 @@ const CustomerSearch = ({
                       mt={responsive.isTablet ? 1 : 0}
                     >
                       <Autocomplete
-                        readOnly={!(userType===1||userType===4)}
-                        options={originCitys||[]}
+                        readOnly={!(userType === 1 || userType === 4)}
+                        options={originCitys || []}
                         getOptionLabel={(option) => option?.name}
                         value={
                           !formik.values.origin ? null : formik.values.origin
@@ -181,10 +181,12 @@ const CustomerSearch = ({
                       }}
                     >
                       <center>
-                        <IconButton onClick={() => {
-                          if (userType !==1) return;
-                          swapLocations();
-                        }}>
+                        <IconButton
+                          onClick={() => {
+                            if (userType !== 1) return;
+                            swapLocations();
+                          }}
+                        >
                           <SwapHorizontalCircleOutlined
                             sx={{
                               fontSize: 32,
@@ -211,9 +213,10 @@ const CustomerSearch = ({
                       mt={responsive.isTablet ? 1 : 0}
                     >
                       <Autocomplete
-                        readOnly={userType===2?true:false}
+                        readOnly={userType === 2 ? true : false}
                         options={
-                          (!formik.values.origin ? citys : destinationCitys)||[]
+                          (!formik.values.origin ? citys : destinationCitys) ||
+                          []
                         }
                         getOptionLabel={(option) => option?.name}
                         value={
