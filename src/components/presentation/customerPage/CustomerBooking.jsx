@@ -130,7 +130,7 @@ const CustomerBooking = ({
   const steps = ["Select Seats", "Passenger Details", "Confirm Booking"];
   const rows = Array.from({ length: 13 }, (_, rowIndex) => (
     <Grid container justifyContent="space-between" key={rowIndex}>
-      <Grid item mb={1.2}>
+      <Grid mb={1.2}>
         <Box display="flex">
           <SeatButton
             onClick={(e) => {
@@ -160,7 +160,7 @@ const CustomerBooking = ({
           </SeatButton>
         </Box>
       </Grid>
-      <Grid item mb={1.2}>
+      <Grid mb={1.2}>
         <Box display="flex">
           <SeatButton
             onClick={(e) => {
@@ -244,7 +244,7 @@ const CustomerBooking = ({
         >
           {/* Header Section */}
           <Grid container spacing={2} alignItems="center">
-            <Grid item xs={isMobile ? 1 : 5}>
+            <Grid column={isMobile ? 1 : 5}>
               {isMobile ? (
                 <IconButton
                   onClick={(e) => {
@@ -305,7 +305,7 @@ const CustomerBooking = ({
                 </Button>
               )}
             </Grid>
-            <Grid item xs={isMobile ? 11 : 7}>
+            <Grid column={isMobile ? 11 : 7}>
               <Typography
                 variant="h5"
                 gutterBottom
@@ -317,7 +317,7 @@ const CustomerBooking = ({
           </Grid>
           <Divider sx={{ my: 2 }} />
           {/* Progress Stepper */}
-          <Grid item xs={12}>
+          <Grid column={12}>
             <Stepper activeStep={activeStep} alternativeLabel>
               {steps.map((label) => (
                 <Step key={label}>
@@ -407,14 +407,13 @@ const CustomerBooking = ({
                     Available Seat
                   </Typography>
                 </Grid>
-                <Grid item xs={12} textAlign="center">
+                <Grid column={12} textAlign="center">
                   <Grid container spacing={2}>
-                    <Grid item xs={7}>
+                    <Grid column={7}>
                       <TextField
                         select
                         id="ksdjks"
                         type="text"
-                        
                         variant="outlined"
                         fullWidth
                         // defaultValue={listAvailableBus[activeBus]}
@@ -435,8 +434,7 @@ const CustomerBooking = ({
                             Select Bus
                           </strong>
                         }
-                        value={ busValue
-                        }
+                        value={busValue}
                         onChange={(e) => {
                           const checkSelecteSeat = availableSeatNumbers?.find(
                             (item) => item.status === "selected"
@@ -478,7 +476,7 @@ const CustomerBooking = ({
                         })}
                       </TextField>
                     </Grid>
-                    {/* <Grid item xs={5} textAlign="left">
+                    {/* <Grid column={5} textAlign="left">
                       <div className="row">
                         <div className="col-2">
                           <Typography variant="h6" color="textPrimary" mt={3}>
@@ -504,7 +502,7 @@ const CustomerBooking = ({
                   <hr />
                 </Grid>
 
-                <Grid item xs={12} textAlign="center">
+                <Grid column={12} textAlign="center">
                   <Typography variant="h6" gutterBottom>
                     Select Seats (
                     <strong>
@@ -526,11 +524,11 @@ const CustomerBooking = ({
                 </Grid>
 
                 {activeBus !== "" && (
-                  <Grid item xs={12} textAlign="center" justifyItems="center">
+                  <Grid column={12} textAlign="center" justifyItems="center">
                     <Box>
                       {rows}
                       <Grid container justifyContent="space-between" key={1}>
-                        <Grid item mb={1.2}>
+                        <Grid mb={1.2}>
                           <Box display="flex">
                             {[49, 50, 51, 52, 53].map((num) => (
                               <SeatButton
@@ -561,7 +559,7 @@ const CustomerBooking = ({
 
             {/* Passenger Details */}
             {activeStep === 1 && (
-              <Grid item xs={12}>
+              <Grid column={12}>
                 <Typography
                   variant="h6"
                   gutterBottom
@@ -571,7 +569,7 @@ const CustomerBooking = ({
                 </Typography>
                 <Grid container spacing={2}>
                   {passengers.map((p, index) => (
-                    <Grid item xs={12} sm={12} md={6} key={p}>
+                    <Grid column={12} sm={12} md={6} key={p}>
                       <Paper
                         sx={{
                           px: 2,
@@ -645,7 +643,7 @@ const CustomerBooking = ({
 
             {/* Booking Summary */}
             {activeStep === 2 && (
-              <Grid item xs={12} m={isMobile ? -1 : 2}>
+              <Grid column={12} m={isMobile ? -1 : 2}>
                 <Typography
                   variant="h6"
                   gutterBottom
@@ -655,7 +653,7 @@ const CustomerBooking = ({
                   Booking Summary
                 </Typography>
                 <Grid container display="flex" justifyContent="center">
-                  <Grid item xs={12} sm={11} md={9} lg={7}>
+                  <Grid column={12} sm={11} md={9} lg={7}>
                     <Paper
                       sx={{
                         m: { xs: 0.7, sm: 1, md: 3 },
@@ -720,7 +718,7 @@ const CustomerBooking = ({
                       <hr />
                       <Grid container sx={{ mt: 2 }} textAlign="left">
                         {/* Route Info */}
-                        <Grid item xs={12}>
+                        <Grid column={12}>
                           <Box display="flex">
                             <Typography
                               className="col-3"
@@ -742,7 +740,7 @@ const CustomerBooking = ({
                         </Grid>
 
                         {/* Departure Time */}
-                        <Grid item xs={12}>
+                        <Grid column={12}>
                           <Box display="flex">
                             <Typography
                               className="col"
@@ -786,7 +784,7 @@ const CustomerBooking = ({
                         </Grid>
 
                         {/* Travel Date */}
-                        <Grid item xs={12}>
+                        <Grid column={12}>
                           <Box display="flex">
                             <Typography
                               className="col"
@@ -815,7 +813,7 @@ const CustomerBooking = ({
                         </Grid>
 
                         {/* Leaving Bus */}
-                        <Grid item xs={12}>
+                        <Grid column={12}>
                           <Box display="flex">
                             <Typography
                               className="col"
@@ -841,7 +839,7 @@ const CustomerBooking = ({
                           <Divider sx={{ my: 2, opacity: 1 }} />
                           <Grid container spacing={1} alignItems="center">
                             {/* Seat icon and number */}
-                            <Grid item xs={3} sm={2} textAlign="center">
+                            <Grid column={3} sm={2} textAlign="center">
                               <Box>
                                 <img
                                   src="./images/car-seat.png"
@@ -857,9 +855,9 @@ const CustomerBooking = ({
                             </Grid>
 
                             {/* Passenger info */}
-                            <Grid item xs={9} sm={10}>
+                            <Grid column={9} sm={10}>
                               <Grid container spacing={1}>
-                                <Grid item xs={12}>
+                                <Grid column={12}>
                                   <Box display="flex">
                                     <Typography
                                       fontSize={{ xs: 14, sm: 16 }}
@@ -873,7 +871,7 @@ const CustomerBooking = ({
                                     </Typography>
                                   </Box>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid column={12}>
                                   <Box display="flex">
                                     <Typography
                                       fontSize={{ xs: 14, sm: 16 }}
@@ -894,13 +892,13 @@ const CustomerBooking = ({
                       ))}
                       <Divider sx={{ my: 2, opacity: 1 }} />
                       <Grid container textAlign="left">
-                        {/* <Grid item xs={5}>
+                        {/* <Grid column={5}>
                           Generate QR Code
                         </Grid> */}
-                        <Grid item xs={12}>
+                        <Grid column={12}>
                           {" "}
                           {/* Seats Selected */}
-                          <Grid item xs={12}>
+                          <Grid column={12}>
                             <Box display="flex">
                               <Typography
                                 className="col"
@@ -919,7 +917,7 @@ const CustomerBooking = ({
                             </Box>
                           </Grid>
                           {/* Unit Price */}
-                          <Grid item xs={12}>
+                          <Grid column={12}>
                             <Box display="flex">
                               <Typography
                                 className="col"
@@ -946,7 +944,7 @@ const CustomerBooking = ({
                             </Box>
                           </Grid>
                           {/* Total Price */}
-                          <Grid item xs={12}>
+                          <Grid column={12}>
                             <Box display="flex">
                               <Typography
                                 className="col"
@@ -983,7 +981,7 @@ const CustomerBooking = ({
           </Box>
 
           {/* Navigation Controls */}
-          <Grid item xs={12} mt={3}>
+          <Grid column={12} mt={3}>
             <Grid container justifyContent="space-between">
               <Button
                 variant="contained"
