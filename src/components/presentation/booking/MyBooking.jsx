@@ -109,7 +109,7 @@ const MyBooking = ({
           spacing={2}
           sx={{ display: "flex", justifyContent: "center" }}
         >
-          <Grid item xs={8} sm={7} md={4}>
+          <Grid column={8} sm={7} md={4}>
             <TextField
               fullWidth
               size="small"
@@ -139,7 +139,7 @@ const MyBooking = ({
               }
             />
           </Grid>
-          <Grid item xs={8} sm={7} md={4}>
+          <Grid column={8} sm={7} md={4}>
             <TextField
               fullWidth
               size="small"
@@ -168,7 +168,7 @@ const MyBooking = ({
               }
             />
           </Grid>
-          <Grid item xs={8} sm={7} md={4}>
+          <Grid column={8} sm={7} md={4}>
             <Button
               fullWidth
               variant="contained"
@@ -224,7 +224,7 @@ const MyBooking = ({
                 <Divider sx={{ opacity: 1, my: 0.1 }} />
                 <CardContent sx={{ textAlign: "left" }}>
                   <Grid container>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -242,7 +242,7 @@ const MyBooking = ({
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -260,7 +260,7 @@ const MyBooking = ({
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -279,7 +279,7 @@ const MyBooking = ({
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -297,7 +297,7 @@ const MyBooking = ({
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -322,7 +322,7 @@ const MyBooking = ({
                     style={{ border: "solid 0.2px black", margin: "5px 0" }}
                   ></div>
                   <Grid container>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -342,7 +342,7 @@ const MyBooking = ({
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -360,7 +360,7 @@ const MyBooking = ({
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -378,7 +378,7 @@ const MyBooking = ({
                         </Typography>
                       </Box>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid column={12}>
                       <Box display="flex">
                         <Typography
                           className="col"
@@ -401,7 +401,7 @@ const MyBooking = ({
                     style={{ border: "solid 0.2px black", margin: "5px 0" }}
                   ></div>
                   <Grid container>
-                    <Grid item xs={8}>
+                    <Grid column={8}>
                       <Typography variant="body1" color="textPrimary">
                         <strong>Booking Date:</strong>
                       </Typography>
@@ -411,7 +411,7 @@ const MyBooking = ({
                         {results.date[1]}
                       </Typography>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid column={4}>
                       <img
                         src={qrCodeUrl}
                         alt="QR Code"
@@ -427,10 +427,10 @@ const MyBooking = ({
                 </CardContent>
               </div>
               <hr />
-              <Grid item xs={12} sx={{ marginLeft: "-20px", mb: 2 }}>
+              <Grid column={12} sx={{ marginLeft: "-20px", mb: 2 }}>
                 <Grid container spacing={1}>
-                  <Grid item xs={7}>
-                    {results.isCancel? (
+                  <Grid column={7}>
+                    {results.isCancel ? (
                       <Button
                         onClick={() => {
                           setClickFunction(1);
@@ -459,9 +459,13 @@ const MyBooking = ({
                           sx={{ fontWeight: "bold" }}
                         />
                       </Button>
-                    ):<Typography variant="body1" color="warning">This ticket can't <br/> cancel or edit</Typography>}
+                    ) : (
+                      <Typography variant="body1" color="warning">
+                        This ticket can't <br /> cancel or edit
+                      </Typography>
+                    )}
                   </Grid>
-                  <Grid item xs={5}>
+                  <Grid column={5}>
                     <Button onClick={handlePrint}>
                       <Chip
                         icon={<FontAwesomeIcon icon={faPrint} fontSize={20} />}
@@ -483,7 +487,7 @@ const MyBooking = ({
                 </Grid>
                 <Grid container spacing={2}>
                   {loginUser && (
-                    <Grid item xs={8}>
+                    <Grid column={8}>
                       {results.isCancel && (
                         <Button
                           onClick={() => {
