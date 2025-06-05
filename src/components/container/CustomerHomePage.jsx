@@ -62,7 +62,7 @@ const HeroSection = styled("div")(({ theme }) => ({
   color: "white",
   padding: theme.spacing(8, 0),
 }));
-const socket = io("http://localhost:8000");
+const socket = io("https://hageregna-server.onrender.com");
 const CustomerHomePage = () => {
   const [seats, setSeats] = useState([]);
 
