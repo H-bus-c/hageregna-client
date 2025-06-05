@@ -60,7 +60,7 @@ const CustomerHome = () => {
               text: "Quick and hassle-free reservation process",
             },
           ].map((feature, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index} sx={{ mb: 5 }}>
+            <Grid column={12} sm={6} md={3} key={index} sx={{ mb: 5 }}>
               <Grow in timeout={(index + 1) * 300}>
                 <AnimatedPaper
                   sx={{
