@@ -28,14 +28,14 @@ const BusCreate = ({
   Id,
 }) => {
   return (
-    <FormPaper>
-      <Grid container spacing={2}>
-        <Grid item sm={8} md={9} xl={11} lg={10}>
+    <FormPaper sx={{ overflow: "auto" }}>
+      <Grid container className="row" minWidth={350}>
+        <Grid className="col-7 col-sm-8 col-md-9 col-lg-10 col-xl-11">
           <Typography variant="h5" gutterBottom sx={{ mb: 3, color: "1976d2" }}>
             {Id === "" ? "Add New Bus" : "Edit Bus Data"}
           </Typography>
         </Grid>
-        <Grid item sm={4} md={3} xl={1} lg={2}>
+        <Grid className="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-1">
           <Button
             variant="outlined"
             sx={{
@@ -67,8 +67,8 @@ const BusCreate = ({
       </Grid>
       <hr />
       <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={1}>
-          <Grid container>
+        <Grid container className="row">
+          <Grid className="col-12 mb-2">
             <Autocomplete
               options={users}
               getOptionLabel={(option) => option.fullName}
@@ -79,9 +79,9 @@ const BusCreate = ({
               //   option.name === value?.name
               // }
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               renderInput={(params) => (
                 <TextField
@@ -98,16 +98,16 @@ const BusCreate = ({
               )}
             />
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               required
               label="License Plate"
               type="text"
               size="small"
               placeholder="e.g (A12345 or B34567)"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="licensePlate"
               onChange={formik.handleChange}
@@ -121,15 +121,15 @@ const BusCreate = ({
               }
             />
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               required
               type="number"
               label="Seat Capacity"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="capacity"
               onChange={formik.handleChange}
@@ -144,15 +144,15 @@ const BusCreate = ({
             />
           </Grid>
 
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <Button
               variant="outlined"
               color="success"
               type="submit"
               disabled={isLoading}
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
                 "&:hover": {
                   backgroundColor: "success.main",
                   color: "white",

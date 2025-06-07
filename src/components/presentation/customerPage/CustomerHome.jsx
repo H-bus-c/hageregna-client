@@ -37,7 +37,7 @@ const CustomerHome = () => {
         >
           Why Choose Us?
         </Typography>
-        <Grid container spacing={4}>
+        <Grid container className="row">
           {[
             {
               icon: "🚌",
@@ -60,7 +60,7 @@ const CustomerHome = () => {
               text: "Quick and hassle-free reservation process",
             },
           ].map((feature, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index} sx={{ mb: 5 }}>
+            <Grid className="col-12 col-sm-6 col-md-3 mb-5" key={index}>
               <Grow in timeout={(index + 1) * 300}>
                 <AnimatedPaper
                   sx={{

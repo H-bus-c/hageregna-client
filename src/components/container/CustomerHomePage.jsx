@@ -1,11 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import {
-  createTheme,
-  useMediaQuery,
-  CircularProgress,
-  ThemeProvider,
-  Box,
-} from "@mui/material";
+import { createTheme, useMediaQuery, ThemeProvider, Box } from "@mui/material";
 import { styled, keyframes } from "@mui/system";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -34,7 +28,7 @@ import {
 import LoadingPage from "../LoadingPage";
 import ErrorPage from "../ErrorPage";
 const theme = createTheme({
-  breakpoints: { values: { xs: 0, sm: 500, md: 769, lg: 1024, xl: 1440 } },
+  breakpoints: { values: { xs: 0, sm: 576, md: 769, lg: 1024, xl: 1200 } },
 });
 const validationSchema = yup.object({
   origin: yup.object().required("Origin is required"),
@@ -243,33 +237,7 @@ const CustomerHomePage = () => {
     listAvailableBusRef.current = listAvailableBus;
   }, [listAvailableBus]);
 
-  useEffect(() => {
-    // socket listeners
-    socket.on("seat-held", ({ seat }) => {
-      const currentFromik = formikRef.current;
-      const currentListAvailableBus = listAvailableBusRef.current;
-      updateSeat(seat, currentFromik, currentListAvailableBus, "held");
-    });
-    socket.on("seat-confirmed", ({ seat }) => {
-      const currentFromik = formikRef.current;
-      const currentListAvailableBus = listAvailableBusRef.current;
-      updateSeat(seat, currentFromik, currentListAvailableBus, "booked");
-    });
-    socket.on("seat-released", ({ seat }) => {
-      const currentFromik = formikRef.current;
-      const currentListAvailableBus = listAvailableBusRef.current;
-      updateSeat(seat, currentFromik, currentListAvailableBus, "available");
-    });
-    socket.on("seat-filtered", ({ availableSeats }) => {
-      filterSeat(availableSeats);
-    });
-    return () => {
-      socket.off("seat-held");
-      socket.off("seat-confirmed");
-      socket.off("seat-released");
-      socket.off("seat-filtered");
-    };
-  }, []);
+
   useEffect(() => {
     if (!routes.length || !cities.length) return;
     const loginToken = localStorage.getItem("token");
@@ -332,7 +300,33 @@ const CustomerHomePage = () => {
       }
     }
   }, [routes, cities, busTypes, buses]);
-
+  useEffect(() => {
+    // socket listeners
+    socket.on("seat-held", ({ seat }) => {
+      const currentFromik = formikRef.current;
+      const currentListAvailableBus = listAvailableBusRef.current;
+      updateSeat(seat, currentFromik, currentListAvailableBus, "held");
+    });
+    socket.on("seat-confirmed", ({ seat }) => {
+      const currentFromik = formikRef.current;
+      const currentListAvailableBus = listAvailableBusRef.current;
+      updateSeat(seat, currentFromik, currentListAvailableBus, "booked");
+    });
+    socket.on("seat-released", ({ seat }) => {
+      const currentFromik = formikRef.current;
+      const currentListAvailableBus = listAvailableBusRef.current;
+      updateSeat(seat, currentFromik, currentListAvailableBus, "available");
+    });
+    socket.on("seat-filtered", ({ availableSeats }) => {
+      filterSeat(availableSeats);
+    });
+    return () => {
+      socket.off("seat-held");
+      socket.off("seat-confirmed");
+      socket.off("seat-released");
+      socket.off("seat-filtered");
+    };
+  }, []);
   const updateSeat = (seat, currentFromik, currentListAvailableBus, status) => {
     const checkStatus =
       status === "held"

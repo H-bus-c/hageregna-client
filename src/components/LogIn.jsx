@@ -45,7 +45,7 @@ const LoginForm = ({ switchView, setOpen, setMessage, setType }) => {
     }),
     onSubmit: async (values) => {
       try {
-        const login = await axios.post("http://localhost:8000/login", values);
+        const login = await axios.post("https://hageregna-server.onrender.com/login", values);
         if (login.data.Login) {
           setMessage(login.data.message);
           setType("success");

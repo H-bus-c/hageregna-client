@@ -1,5 +1,6 @@
 import axios from "axios";
 const api = "https://hageregna-server.onrender.com";
+//https://hageregna-server.onrender.com
 
 export const fetchDate = async () => {
   const response = await axios.get(`${api}/date`).catch((err) => err);

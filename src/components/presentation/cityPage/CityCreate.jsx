@@ -30,14 +30,14 @@ const CityCreate = ({
   Id,
 }) => {
   return (
-    <FormPaper>
-      <Grid container spacing={2}>
-        <Grid item sm={8} md={9} xl={11} lg={10}>
+    <FormPaper sx={{ overflow: "auto" }}>
+      <Grid container className="row" minWidth={350}>
+        <Grid className="col-7 col-sm-8 col-md-9 col-lg-10 col-xl-11">
           <Typography variant="h5" gutterBottom sx={{ mb: 3, color: "1976d2" }}>
             {Id === "" ? "Add New City" : "Edit City Data"}
           </Typography>
         </Grid>
-        <Grid item sm={4} md={3} xl={1} lg={2}>
+        <Grid className="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-1">
           <Button
             variant="outlined"
             sx={{
@@ -69,16 +69,16 @@ const CityCreate = ({
       </Grid>
       <hr />
       <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={1}>
-          <Grid container>
+        <Grid container className="row">
+          <Grid className="col-12 mb-2">
             <TextField
               select
               required
               label="Region"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="regionId"
               onChange={formik.handleChange}
@@ -98,15 +98,15 @@ const CityCreate = ({
               ))}
             </TextField>
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               select
               required
               label="Zone"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="zoneId"
               onChange={formik.handleChange}
@@ -130,15 +130,15 @@ const CityCreate = ({
               })}
             </TextField>
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               required
               type="text"
               label="City Name"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="name"
               onChange={formik.handleChange}
@@ -153,15 +153,15 @@ const CityCreate = ({
             />
           </Grid>
 
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <Button
               variant="outlined"
               color="success"
               type="submit"
               disabled={isLoading}
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
                 "&:hover": {
                   backgroundColor: "success.main",
                   color: "white",

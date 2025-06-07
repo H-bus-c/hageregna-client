@@ -93,9 +93,9 @@ const Booking = () => {
   return (
     <Container maxWidth="lg" sx={{ my: 4 }}>
       <Paper elevation={3} sx={{ p: 3 }}>
-        <Grid container spacing={3}>
+        <Grid container className="row">
           {/* Header Section */}
-          <Grid item xs={12}>
+          <Grid className="col-12">
             <Button startIcon={<ArrowBack />} href="/search">
               Back to Search
             </Button>
@@ -107,7 +107,7 @@ const Booking = () => {
           </Grid>
 
           {/* Progress Stepper */}
-          <Grid item xs={12}>
+          <Grid className="col-12">
             <Stepper activeStep={activeStep} alternativeLabel>
               {steps.map((label) => (
                 <Step key={label}>
@@ -119,13 +119,13 @@ const Booking = () => {
 
           {/* Seat Map Section */}
           {activeStep === 0 && (
-            <Grid item xs={12}>
+            <Grid className="col-12">
               <Typography variant="h6" gutterBottom>
                 Select Seats ({selectedSeats.length} selected)
               </Typography>
-              <Grid container spacing={2}>
+              <Grid container className="row">
                 {busDetails.seats.map((seat) => (
-                  <Grid item key={seat.number}>
+                  <Grid key={seat.number}>
                     <SeatButton
                       variant="contained"
                       status={
@@ -146,13 +146,13 @@ const Booking = () => {
 
           {/* Passenger Details */}
           {activeStep === 1 && (
-            <Grid item xs={12}>
+            <Grid className="col-12">
               <Typography variant="h6" gutterBottom>
                 Passenger Details
               </Typography>
-              <Grid container spacing={2}>
+              <Grid container className="row">
                 {selectedSeats.map((seat) => (
-                  <Grid item xs={12} sm={6} key={seat}>
+                  <Grid className="col-12 col-sm-6" key={seat}>
                     <Paper sx={{ p: 2 }}>
                       <Typography variant="subtitle1" gutterBottom>
                         <EventSeat sx={{ mr: 1 }} /> Seat {seat}
@@ -185,12 +185,12 @@ const Booking = () => {
 
           {/* Booking Summary */}
           {activeStep === 2 && (
-            <Grid item xs={12}>
+            <Grid className="col-12">
               <Typography variant="h6" gutterBottom>
                 Booking Summary
               </Typography>
-              <Grid container spacing={3}>
-                <Grid item xs={12} md={6}>
+              <Grid container className="">
+                <Grid className="col-12 col-md-6" >
                   <Paper sx={{ p: 2 }}>
                     <Typography variant="subtitle1" gutterBottom>
                       Journey Details
@@ -212,18 +212,18 @@ const Booking = () => {
                   </Paper>
                 </Grid>
 
-                <Grid item xs={12} md={6}>
+                <Grid className="col-12 col-md-6">
                   <Paper sx={{ p: 2 }}>
                     <Typography variant="subtitle1" gutterBottom>
                       Fare Details
                     </Typography>
                     <Divider />
-                    <Grid container sx={{ mt: 2 }}>
-                      <Grid item xs={6}>
+                    <Grid container sx={{ mt: 2 }} className="row">
+                      <Grid className="col-6">
                         <Typography>Seats Selected:</Typography>
                         <Typography>Total Price:</Typography>
                       </Grid>
-                      <Grid item xs={6} textAlign="right">
+                      <Grid className="col-6" textAlign="right">
                         <Typography>{selectedSeats.length}</Typography>
                         <Typography>
                           ₹{selectedSeats.length * busDetails.price}
@@ -237,7 +237,7 @@ const Booking = () => {
           )}
 
           {/* Navigation Controls */}
-          <Grid item xs={12} sx={{ mt: 3 }}>
+          <Grid className="col-12" sx={{ mt: 3 }}>
             <Grid container justifyContent="space-between">
               <Button
                 disabled={activeStep === 0}

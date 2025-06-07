@@ -23,14 +23,14 @@ const FormPaper = styled(Paper)(({ theme }) => ({
 }));
 const BusTypeCreate = ({ users, handleCreate, formik, isLoading, Id }) => {
   return (
-    <FormPaper>
-      <Grid container spacing={2}>
-        <Grid item sm={8} md={9} xl={11} lg={10}>
+    <FormPaper sx={{ overflow: "auto" }}>
+      <Grid container className="row" minWidth={350}>
+        <Grid className="col-7 col-sm-8 col-md-9 col-lg-10 col-xl-11">
           <Typography variant="h5" gutterBottom sx={{ mb: 3, color: "1976d2" }}>
             {Id === "" ? "Add New Bus type" : "Edit Bus Type Data"}
           </Typography>
         </Grid>
-        <Grid item sm={4} md={3} xl={1} lg={2}>
+        <Grid className="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-1">
           <Button
             variant="outlined"
             sx={{
@@ -62,16 +62,16 @@ const BusTypeCreate = ({ users, handleCreate, formik, isLoading, Id }) => {
       </Grid>
       <hr />
       <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={1}>
-          <Grid container>
+        <Grid container className="row">
+          <Grid className="col-12 mb-2">
             <TextField
               required
               type="text"
               label="Bus Name"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="name"
               onChange={formik.handleChange}
@@ -85,15 +85,15 @@ const BusTypeCreate = ({ users, handleCreate, formik, isLoading, Id }) => {
               }
             />
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               required
               type="text"
               label="Contact Name"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="contactName"
               onChange={formik.handleChange}
@@ -107,15 +107,15 @@ const BusTypeCreate = ({ users, handleCreate, formik, isLoading, Id }) => {
               }
             />
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               required
               type="email"
               label="Email"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="contactEmail"
               onChange={formik.handleChange}
@@ -129,15 +129,15 @@ const BusTypeCreate = ({ users, handleCreate, formik, isLoading, Id }) => {
               }
             />
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               required
               type="tel"
               label="Phone Number"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="contactPhone"
               onChange={formik.handleChange}
@@ -151,15 +151,15 @@ const BusTypeCreate = ({ users, handleCreate, formik, isLoading, Id }) => {
               }
             />
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               select
               required
               label="User"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="userId"
               onChange={formik.handleChange}
@@ -179,15 +179,15 @@ const BusTypeCreate = ({ users, handleCreate, formik, isLoading, Id }) => {
               ))}
             </TextField>
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <Button
               variant="outlined"
               color="success"
               type="submit"
               disabled={isLoading}
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
                 "&:hover": {
                   backgroundColor: "success.main",
                   color: "white",

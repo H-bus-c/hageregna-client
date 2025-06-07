@@ -52,9 +52,9 @@ const CustomerSearch = ({
     };
   });
   return (
-    <Container maxWidth="lg" >
-      <Grid container spacing={3} >
-        <Grid item xs={12} >
+    <Container maxWidth="xl">
+      <Grid container className="row">
+        <Grid className="col-12">
           <Slide direction="down" in timeout={800}>
             <Typography
               variant="h2"
@@ -98,38 +98,28 @@ const CustomerSearch = ({
             </Typography>
           </Fade>
 
-          <Grow in timeout={1600} >
+          <Grow in timeout={1600}>
             <div>
               <AnimatedPaper
                 elevation={6}
                 sx={{
-                  pl: 3,
+                  px: 3,
                   py: 4,
-                  pr: responsive.isTablet ? 3 : 1,
+                  //pr: responsive.isTablet ? 3 : 1,
                   borderRadius: 4,
                   backgroundColor: "rgba(255, 255, 255, 0.9)",
-                  minWidth:340
+                  minWidth: 340,
                 }}
               >
                 <form onSubmit={formik.handleSubmit}>
-                  <Grid
-                    container
-                    spacing={
-                      responsive.isTablet && !responsive.isMobile ? 3 : 1
-                    }
-                    alignItems="center"
-                  >
+                  <Grid className="row" alignItems="center">
                     <Grid
-                      item
-                      lg={2.5}
-                      xs={responsive.isTablet ? 12 : 0}
-                      md={responsive.isTablet ? 5 : 0}
-                      sm={responsive.isTablet ? 5 : 0}
-                      mt={responsive.isTablet ? 1 : 0}
+                      className="col-12 col-sm-5 col-xl-2 mt-3"
+                      sx={{ minWidth: 230 }}
                     >
                       <Autocomplete
-                        readOnly={!(userType===1||userType===4)}
-                        options={originCitys||[]}
+                        readOnly={!(userType === 1 || userType === 4)}
+                        options={originCitys || []}
                         getOptionLabel={(option) => option?.name}
                         value={
                           !formik.values.origin ? null : formik.values.origin
@@ -169,22 +159,20 @@ const CustomerSearch = ({
                     </Grid>
 
                     <Grid
-                      item
-                      xs={responsive.isTablet ? 12 : 0}
-                      mt={responsive.isTablet ? 1 : 0}
-                      md={responsive.isTablet ? 2 : 0}
-                      sm={responsive.isTablet ? 2 : 0}
-                      lg={1}
+                      className="col-12 col-sm-1  mt-3"
                       sx={{
                         textAlign: "center",
-                        margin: { lg: "0 -20px 0 -20px" },
+                        width: { xl: 50 },
+                        mx: { xl: 1 },
                       }}
                     >
                       <center>
-                        <IconButton onClick={() => {
-                          if (userType !==1) return;
-                          swapLocations();
-                        }}>
+                        <IconButton
+                          onClick={() => {
+                            if (userType !== 1) return;
+                            swapLocations();
+                          }}
+                        >
                           <SwapHorizontalCircleOutlined
                             sx={{
                               fontSize: 32,
@@ -203,17 +191,14 @@ const CustomerSearch = ({
                     </Grid>
 
                     <Grid
-                      item
-                      lg={2.5}
-                      xs={responsive.isTablet ? 12 : 0}
-                      md={responsive.isTablet ? 5 : 0}
-                      sm={responsive.isTablet ? 5 : 0}
-                      mt={responsive.isTablet ? 1 : 0}
+                      className="col-12 col-sm-5 col-xl-2 mt-3"
+                      sx={{ minWidth: 230 }}
                     >
                       <Autocomplete
-                        readOnly={userType===2?true:false}
+                        readOnly={userType === 2 ? true : false}
                         options={
-                          (!formik.values.origin ? citys : destinationCitys)||[]
+                          (!formik.values.origin ? citys : destinationCitys) ||
+                          []
                         }
                         getOptionLabel={(option) => option?.name}
                         value={
@@ -254,14 +239,7 @@ const CustomerSearch = ({
                       />
                     </Grid>
 
-                    <Grid
-                      item
-                      lg={2}
-                      xs={responsive.isTablet ? 12 : 0}
-                      md={responsive.isTablet ? 4 : 0}
-                      sm={responsive.isTablet ? 6 : 0}
-                      mt={responsive.isTablet ? 1 : 0}
-                    >
+                    <Grid className="col-12 col-sm-6 col-md-4 col-xl-2 mt-3">
                       <EthiopianCalendarPicker
                         name="travelDate"
                         value={formik.values.travelDate}
@@ -286,14 +264,7 @@ const CustomerSearch = ({
                       />
                     </Grid>
 
-                    <Grid
-                      item
-                      lg={2}
-                      xs={responsive.isTablet ? 12 : 0}
-                      md={responsive.isTablet ? 4 : 0}
-                      sm={responsive.isTablet ? 6 : 0}
-                      mt={responsive.isTablet ? 1 : 0}
-                    >
+                    <Grid className="col-12 col-sm-6 col-md-4 col-xl-2 mt-3">
                       <TextField
                         fullWidth
                         label="Departure Time"
@@ -336,14 +307,7 @@ const CustomerSearch = ({
                       </TextField>
                     </Grid>
 
-                    <Grid
-                      item
-                      lg={2}
-                      xs={responsive.isTablet ? 12 : 0}
-                      md={responsive.isTablet ? 4 : 0}
-                      sm={responsive.isTablet ? 12 : 0}
-                      mt={responsive.isTablet ? 4 : 3}
-                    >
+                    <Grid className="col-12 col-sm-12 col-md-4 col-xl-2 mt-3">
                       <Button
                         fullWidth
                         variant="contained"
@@ -351,7 +315,6 @@ const CustomerSearch = ({
                         type="submit"
                         disabled={isLoading}
                         sx={{
-                          marginTop: "-25px",
                           width: { sm: "100%", xs: "100%" },
                           py: 2,
                           background:

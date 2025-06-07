@@ -30,14 +30,14 @@ const RouteCreate = ({
   Id,
 }) => {
   return (
-    <FormPaper>
-      <Grid container spacing={2}>
-        <Grid item sm={8} md={9} xl={11} lg={10}>
+    <FormPaper sx={{ overflow: "auto" }}>
+      <Grid container className="row" minWidth={350}>
+        <Grid className="col-7 col-sm-8 col-md-9 col-lg-10 col-xl-11">
           <Typography variant="h5" gutterBottom sx={{ mb: 3, color: "1976d2" }}>
             {Id === "" ? "Add New Routes" : "Edit Routes Data"}
           </Typography>
         </Grid>
-        <Grid item sm={4} md={3} xl={1} lg={2}>
+        <Grid className="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-1">
           <Button
             variant="outlined"
             sx={{
@@ -69,8 +69,8 @@ const RouteCreate = ({
       </Grid>
       <hr />
       <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={1}>
-          <Grid container>
+        <Grid container className="row">
+          <Grid className="col-12 mb-2">
             <Autocomplete
               options={citys}
               getOptionLabel={(option) => {
@@ -85,9 +85,9 @@ const RouteCreate = ({
                 option.name === value?.name
               }
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               renderInput={(params) => (
                 <TextField
@@ -104,7 +104,7 @@ const RouteCreate = ({
               )}
             />
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <Autocomplete
               options={citys}
               getOptionLabel={(option) => {
@@ -112,30 +112,23 @@ const RouteCreate = ({
                 const region = regions.find((r) => r?.Id === zone?.regionId);
                 return `${option?.name} , ${zone?.name} , ${region?.name}`;
               }}
-              value={
-                !formik.values.city2 ? null : formik.values.city2
-              }
-              onChange={(_, value) =>
-                formik.setFieldValue("city2", value)
-              }
+              value={!formik.values.city2 ? null : formik.values.city2}
+              onChange={(_, value) => formik.setFieldValue("city2", value)}
               onBlur={formik.handleBlur}
               isOptionEqualToValue={(option, value) =>
                 option.name === value?.name
               }
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Arraival Place"
                   name="city2"
-                  error={
-                    formik.touched.city2 &&
-                    Boolean(formik.errors.city2)
-                  }
+                  error={formik.touched.city2 && Boolean(formik.errors.city2)}
                   helperText={
                     formik.touched.city2 && formik.errors.city2
                       ? `${formik.errors.city2}`
@@ -146,16 +139,15 @@ const RouteCreate = ({
             />
           </Grid>
 
-        
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <TextField
               required
               type="number"
               label="Distance (Km)"
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               name="distance"
               onChange={formik.handleChange}
@@ -169,15 +161,15 @@ const RouteCreate = ({
               }
             />
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <Button
               variant="outlined"
               color="success"
               type="submit"
               disabled={isLoading}
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
                 "&:hover": {
                   backgroundColor: "success.main",
                   color: "white",

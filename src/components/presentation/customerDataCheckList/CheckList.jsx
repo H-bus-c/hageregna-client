@@ -31,10 +31,10 @@ const PassengerCard = React.memo(({ p, index, setCustomerData }) => {
           <strong>Full Name : </strong>
           {p.name}
         </Typography>
-        <Grid container spacing={1}>
-          <Grid item xs={12} lg={8}>
-            <Grid container spacing={1}>
-              <Grid item sm={5}>
+        <Grid container className="row">
+          <Grid className="col-12" lg={8}>
+            <Grid container className="row">
+              <Grid sm={5}>
                 <Typography variant="body1">
                   <strong>📞 Phone :</strong>
                 </Typography>
@@ -45,7 +45,7 @@ const PassengerCard = React.memo(({ p, index, setCustomerData }) => {
                   <strong>🪑 Seat :</strong>
                 </Typography>
               </Grid>
-              <Grid item sm={7}>
+              <Grid sm={7}>
                 <Typography variant="body1">+251{p.phone}</Typography>
                 <Typography variant="body1">
                   {p.ticketNumber?.match(/.{1,4}/g)?.join("−")}
@@ -56,7 +56,7 @@ const PassengerCard = React.memo(({ p, index, setCustomerData }) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} lg={4}>
+          <Grid className="col-12" lg={4}>
             <FormControlLabel
               control={
                 <Checkbox checked={p.isAvailable} onClick={toggleAvailable} />
@@ -82,11 +82,10 @@ const CheckList = ({
   handleCustomer,
   setCustomerData,
 }) => {
- 
   const renderedCustomers = useMemo(
     () =>
       customerData.map((p, index) => (
-        <Grid item xs={12} md={6} key={index}>
+        <Grid className="col-12" md={6} key={index}>
           <PassengerCard
             p={p}
             index={index}
@@ -105,8 +104,8 @@ const CheckList = ({
         <Typography variant="h5" gutterBottom textAlign="center">
           🧾 Car Attendant
         </Typography>
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item xs={11} sm={6} md={4}>
+        <Grid container className="row" justifyContent="center">
+          <Grid className="col-11" sm={6} md={4}>
             <Autocomplete
               options={routes}
               getOptionLabel={(option) => {
@@ -132,7 +131,7 @@ const CheckList = ({
               )}
             />
           </Grid>
-          <Grid item xs={11} sm={6} md={4}>
+          <Grid className="col-11" sm={6} md={4}>
             <TextField
               fullWidth
               size="small"
@@ -162,7 +161,7 @@ const CheckList = ({
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={11} sm={6} md={2}>
+          <Grid className="col-11" sm={6} md={2}>
             <TextField
               fullWidth
               size="small"
@@ -184,7 +183,7 @@ const CheckList = ({
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={11} sm={6} md={2}>
+          <Grid className="col-11" sm={6} md={2}>
             <Button
               fullWidth
               variant="contained"
@@ -210,24 +209,20 @@ const CheckList = ({
 
         {customerData.length > 0 ? (
           <Box pt={2} sx={{ width: isMobile ? "350px" : "auto" }}>
-            <form onSubmit={formik.handleSubmit}><Typography variant="h6" gutterBottom>
-              Passengers for:
-            </Typography>
-            <Box sx={{ flexGrow: 1, p: 2 }}>
-              <Grid container spacing={2}>
-                {renderedCustomers}
-              </Grid>
-            </Box>
-            
-            <Button
-              type="submit"
-              variant="contained"
-              color="success"
-            >
-              Submit
-            </Button></form>
-            
+            <form onSubmit={formik.handleSubmit}>
+              <Typography variant="h6" gutterBottom>
+                Passengers for:
+              </Typography>
+              <Box sx={{ flexGrow: 1, p: 2 }}>
+                <Grid container className="row">
+                  {renderedCustomers}
+                </Grid>
+              </Box>
 
+              <Button type="submit" variant="contained" color="success">
+                Submit
+              </Button>
+            </form>
           </Box>
         ) : (
           <Typography variant="h5" color="textPrimary" my={5}>

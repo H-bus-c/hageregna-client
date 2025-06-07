@@ -41,14 +41,14 @@ const BusDepartureTimeCreate = ({
   setBusNumbers,
 }) => {
   return (
-    <FormPaper>
-      <Grid container spacing={2}>
-        <Grid item sm={8} md={9} xl={11} lg={10}>
+    <FormPaper sx={{ overflow: "auto" }}>
+      <Grid container className="row" minWidth={350}>
+        <Grid className="col-7 col-sm-8 col-md-9 col-lg-10 col-xl-11">
           <Typography variant="h5" gutterBottom sx={{ mb: 3, color: "1976d2" }}>
             {Id === "" ? "Add New Departure Time" : "Edit Departure Time Data"}
           </Typography>
         </Grid>
-        <Grid item sm={4} md={3} xl={1} lg={2}>
+        <Grid className="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-1">
           <Button
             variant="outlined"
             sx={{
@@ -80,8 +80,8 @@ const BusDepartureTimeCreate = ({
       </Grid>
       <hr />
       <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={1}>
-          <Grid container>
+        <Grid container className="row">
+          <Grid className="col-12 mb-2">
             <Autocomplete
               options={routes}
               getOptionLabel={(option) =>
@@ -94,9 +94,9 @@ const BusDepartureTimeCreate = ({
               //   option.name === value?.name
               // }
               size="small"
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
               }}
               renderInput={(params) => (
                 <TextField
@@ -115,32 +115,39 @@ const BusDepartureTimeCreate = ({
               )}
             />
           </Grid>
-            <Grid container>
-                      <TextField
-                        required
-                        type="number"
-                        label="Price"
-                        size="small"
-                        sx={{
-                          width: "90vw",
-                          margin: "10px",
-                        }}
-                        name="basePrice"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.basePrice}
-                        error={formik.touched.basePrice && formik.errors.basePrice}
-                        helperText={
-                          formik.touched.basePrice && formik.errors.basePrice
-                            ? `${formik.errors.basePrice}`
-                            : ""
-                        }
-                      />
-                    </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
+            <TextField
+              required
+              type="number"
+              label="Price"
+              size="small"
+              fullWidth
+              sx={{
+                minWidth: 330,
+              }}
+              name="basePrice"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.basePrice}
+              error={formik.touched.basePrice && formik.errors.basePrice}
+              helperText={
+                formik.touched.basePrice && formik.errors.basePrice
+                  ? `${formik.errors.basePrice}`
+                  : ""
+              }
+            />
+          </Grid>
+          <Grid className="col-12 mb-2">
             {departureTimes.map((d, i) => {
               return (
-                <Row style={{ display: "flex", justifyContent: "center",textAlign:"center" }}>
+                <Row
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    minWidth: 350,
+                  }}
+                >
                   <Col xs={1} md={1}>
                     {departureTimes.length === i + 1 ? (
                       <AddOutlined
@@ -148,7 +155,7 @@ const BusDepartureTimeCreate = ({
                         fontSize="large"
                         color="primary"
                         sx={{
-                          marginLeft: {xs:"0",sm:"15px"},
+                          marginLeft: { xs: "0", sm: "15px" },
                           cursor: "pointer",
                           marginTop: "10px",
                           "&: hover": {
@@ -158,10 +165,10 @@ const BusDepartureTimeCreate = ({
                         }}
                       />
                     ) : (
-                      <span style={{ marginLeft: "50px" }}></span>
+                      <span style={{ marginLeft: "40px" }}></span>
                     )}
                   </Col>
-                  <Col xs={5} md={4}>
+                  <Col xs={5} md={5}>
                     <TextField
                       required
                       id={`kjdfs${i}`}
@@ -172,7 +179,7 @@ const BusDepartureTimeCreate = ({
                       }}
                       size="small"
                       sx={{
-                        margin: "10px",
+                        margin: "5px",
                       }}
                       value={
                         departureTimes[i] === "" ? null : departureTimes[i]
@@ -183,7 +190,7 @@ const BusDepartureTimeCreate = ({
                       }}
                     />
                   </Col>
-                  <Col xs={5} md={4}>
+                  <Col xs={5} md={5}>
                     <TextField
                       required
                       id={`ggdf${i}`}
@@ -194,7 +201,7 @@ const BusDepartureTimeCreate = ({
                         shrink: true,
                       }}
                       sx={{
-                        margin: "10px",
+                        margin: "5px",
                       }}
                       value={busNumbers[i] === "" ? null : busNumbers[i]}
                       onChange={(e) => {
@@ -215,7 +222,7 @@ const BusDepartureTimeCreate = ({
                         fontSize="large"
                         color="error"
                         sx={{
-                          marginLeft:{xs:"-25px"},
+                          marginLeft: { xs: "-25px" },
                           cursor: "pointer",
                           marginTop: "10px",
                           "&: hover": {
@@ -230,15 +237,15 @@ const BusDepartureTimeCreate = ({
               );
             })}
           </Grid>
-          <Grid container>
+          <Grid className="col-12 mb-2">
             <Button
               variant="outlined"
               color="success"
               type="submit"
               disabled={isLoading}
+              fullWidth
               sx={{
-                width: "90vw",
-                margin: "10px",
+                minWidth: 330,
                 "&:hover": {
                   backgroundColor: "success.main",
                   color: "white",
