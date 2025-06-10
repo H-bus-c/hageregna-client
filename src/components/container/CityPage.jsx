@@ -88,6 +88,7 @@ const CityPage = () => {
   const formikRegion = useFormik({
     initialValues: {
       name: "",
+      statusId:""
     },
     validationSchema: validationSchemaRegion,
     onSubmit: async (values) => {
@@ -103,6 +104,7 @@ const CityPage = () => {
             formikRegion.setErrors({ name: "Duplicate Region not allowed!" });
             return;
           }
+          values.statusId = 1;
          await addRegion(values)
             setAlertMessage("Region Data Added Successfully!");
             setAlertOpen(true);
@@ -135,6 +137,7 @@ const CityPage = () => {
     initialValues: {
       name: "",
       regionId: "",
+      statusId:""
     },
     validationSchema: validationSchemaZone,
     onSubmit: async (values) => {
@@ -150,6 +153,7 @@ const CityPage = () => {
             formikZone.setErrors({ name: "Duplicate Zone not allowed!" });
             return;
           }
+          values.statusId = 1;
           await addZone(values);
             setAlertMessage("Zone Data Added Successfully!");
             setAlertOpen(true);
@@ -182,6 +186,7 @@ const CityPage = () => {
       name: "",
       regionId: "",
       zoneId: "",
+      statusId:"",
     },
     validationSchema: validationSchemaCity,
     onSubmit: async (values) => {
@@ -197,6 +202,7 @@ const CityPage = () => {
             formikCity.setErrors({ name: "Duplicate City not allowed!" });
             return;
           }
+          values.statusId = 1;
           await addCity(values);
             setAlertMessage("City Data Added Successfully!");
             setAlertOpen(true);

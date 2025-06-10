@@ -57,7 +57,7 @@ const BusTypePage = () => {
   const { mutateAsync: addBusType } = useAddBusType();
   const { mutateAsync: updateBusType } = useUpdateBusType();
   const users = useMemo(() => {
-    return userData?.filter(u => u?.Id === 2);
+    return userData?.filter(u => u?.roleId === 2&&u.isActive);
   }, [userData]);
   const busTypes = useMemo(() => {
     return busTypeData?.filter(busType => busType?.statusId === 1);
