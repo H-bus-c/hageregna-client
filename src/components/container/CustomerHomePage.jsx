@@ -59,7 +59,6 @@ const HeroSection = styled("div")(({ theme }) => ({
 const socket = io("https://hageregna-server.onrender.com");
 const CustomerHomePage = () => {
   const [seats, setSeats] = useState([]);
-
   const [destinationCitys, setDestinationCitys] = useState([]);
   const [departureTimes, setDepartureTimes] = useState([]);
   const [listAvailableBus, setListAvailableBus] = useState([]);
@@ -160,7 +159,7 @@ const CustomerHomePage = () => {
       setIsLoading(true);
       values.busDepartureTimeId = listAvailableBus[activeBus]?.Id;
       values.departureTime =
-        departureTimes[values.departureTime].split(" - ")[0];
+        departureTimes[values.departureTime].split("-")[0];
       try {
         const amount = parseFloat(
           passengers.length *
@@ -223,6 +222,7 @@ const CustomerHomePage = () => {
       
     },
   });
+  console.log(new Date(calenderECtoGC(formik.values.travelDate)));
   const formikRef = useRef();
   const listAvailableBusRef = useRef();
   const busesRef = useRef();

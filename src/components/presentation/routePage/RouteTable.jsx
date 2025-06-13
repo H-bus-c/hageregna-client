@@ -77,37 +77,37 @@ const RouteTable = ({ routes, citys, handleCreate, handleUpdate,handleDelete }) 
       headerClassName: "super-app-theme--header",
     },
     
-    {
-      field: "action",
-      headerName: "Action",
-      headerAlign: "center",
-      align: "center",
-      width:100,
-      headerClassName: "super-app-theme--header",
-      renderCell: (params) => (
-        <div className="row" >
-          <center><GridActionsCellItem className="col-6"
-            icon={
-              <Tooltip title="Edit">
-                <Edit color="primary" />
-              </Tooltip>
-            }
-            onClick={() => handleUpdate(params.row)}
-            label="Edit"
-          />
-          <GridActionsCellItem className="col-6"
-            icon={
-              <Tooltip title="Delete">
-                <Delete color="error" />
-              </Tooltip>
-            }
-             onClick={() => handleDelete(params.id)}
-            label="Delete"
-          /></center>
+    // {
+    //   field: "action",
+    //   headerName: "Action",
+    //   headerAlign: "center",
+    //   align: "center",
+    //   width:100,
+    //   headerClassName: "super-app-theme--header",
+    //   renderCell: (params) => (
+    //     <div className="row" >
+    //       <center><GridActionsCellItem className="col-6"
+    //         icon={
+    //           <Tooltip title="Edit">
+    //             <Edit color="primary" />
+    //           </Tooltip>
+    //         }
+    //         onClick={() => handleUpdate(params.row)}
+    //         label="Edit"
+    //       />
+    //       <GridActionsCellItem className="col-6"
+    //         icon={
+    //           <Tooltip title="Delete">
+    //             <Delete color="error" />
+    //           </Tooltip>
+    //         }
+    //          onClick={() => handleDelete(params.id)}
+    //         label="Delete"
+    //       /></center>
           
-        </div>
-      ),
-    },
+    //     </div>
+    //   ),
+    // },
   ];
   const rows = routes.map((route, index) => {
     let newBus = route;

@@ -113,7 +113,7 @@ const CustomerBooking = ({
   };
   const steps = ["Select Seats", "Passenger Details", "Confirm Booking"];
   const rows = Array.from({ length: 13 }, (_, rowIndex) => (
-    <Grid  className="row" justifyContent="space-between" key={rowIndex}>
+    <Grid container justifyContent="space-between" key={rowIndex}>
       <Grid mb={1.2}>
         <Box display="flex">
           <SeatButton
@@ -227,7 +227,7 @@ const CustomerBooking = ({
           }}
         >
           {/* Header Section */}
-          <Grid  className="row" alignItems="center">
+          <Grid className="row" alignItems="center">
             <Grid className="col-1 col-sm-5 col-md-4 col-lg-3">
               {isMobile ? (
                 <IconButton
@@ -310,7 +310,7 @@ const CustomerBooking = ({
           {/* Seat Map Section */}
           <Box>
             {activeStep === 0 && (
-              <Grid  className="row" >
+              <Grid className="row" display="flex" justifyContent="center">
                 <Grid
                   textAlign="center"
                   justifyItems="center"
@@ -402,7 +402,7 @@ const CustomerBooking = ({
                     label={
                       <strong style={{ fontSize: "1.2rem" }}>Select Bus</strong>
                     }
-                    value={busValue}
+                    value={busValue ?? ""}
                     onChange={(e) => {
                       const checkSelecteSeat = availableSeatNumbers?.find(
                         (item) => item.status === "selected"
@@ -433,7 +433,11 @@ const CustomerBooking = ({
                         (b) => b.Id === l.busTypeId
                       );
                       return (
-                        <MenuItem key={l.Id} value={index} sx={menuItem()}>
+                        <MenuItem
+                          key={l.Id}
+                          value={index ?? ""}
+                          sx={menuItem()}
+                        >
                           {busType.name}
                           <Typography ml={5}>
                             {53 - Number(l.totalSeat)} <EventSeat />
@@ -476,7 +480,7 @@ const CustomerBooking = ({
                   >
                     <Box>
                       {rows}
-                      <Grid  className="row" justifyContent="space-between" key={1}>
+                      <Grid container justifyContent="space-between" key={1}>
                         <Grid mb={1.2}>
                           <Box display="flex">
                             {[49, 50, 51, 52, 53].map((num) => (
@@ -516,9 +520,9 @@ const CustomerBooking = ({
                 >
                   Passenger Details
                 </Typography>
-                <Grid  className="row" >
+                <Grid className="row">
                   {passengers.map((p, index) => (
-                    <Grid className="col-12 col-md-6 mb-2" key={p}>
+                    <Grid className="col-12 col-md-6 mb-2" key={index}>
                       <Paper
                         sx={{
                           px: 2,
@@ -549,7 +553,7 @@ const CustomerBooking = ({
                               label="Full Name"
                               margin="normal"
                               required
-                              value={p.name}
+                              value={p.name ?? ""}
                               onChange={(e) =>
                                 handleChange(index, "name", e.target.value)
                               }
@@ -564,7 +568,7 @@ const CustomerBooking = ({
                               margin="normal"
                               // inputProps={{ inputMode: 'numeric' }}
                               required
-                              value={p.phone}
+                              value={p.phone ?? ""}
                               InputProps={{
                                 startAdornment: (
                                   <InputAdornment
@@ -592,7 +596,7 @@ const CustomerBooking = ({
 
             {/* Booking Summary */}
             {activeStep === 2 && (
-              <Grid m={isMobile ? -1 : 2}>
+              <Grid m={isMobile ? -1 : 2} className="col-12">
                 <Typography
                   variant="h6"
                   gutterBottom
@@ -601,303 +605,311 @@ const CustomerBooking = ({
                 >
                   Booking Summary
                 </Typography>
-                <Grid  className="row" >
-                  <Grid className="col-12 col-sm-11 col-md-9 col-lg-7">
-                    <Paper
-                      sx={{
-                        m: { xs: 0.7, sm: 1, md: 3 },
-                        px: { xs: 0.5, sm: 1, md: 3 },
-                        py: 2,
-                      }}
+                <Grid className="row">
+                  <center>
+                    <Grid
+                      className="col-12 col-sm-11 col-md-9 col-lg-7"
+                      textAlign="center"
+                      alignItems="center"
                     >
-                      <CardHeader
-                        avatar={
-                          <Avatar sx={{ bgcolor: "#1976d2" }}>
-                            <DirectionsBusFilled />
-                          </Avatar>
-                        }
-                        title={
-                          busTypes?.find(
-                            (bus) =>
-                              bus?.Id === listAvailableBus[activeBus]?.busTypeId
-                          )?.name
-                        }
-                        subheader={"Detail Info"}
-                        titleTypographyProps={{
-                          fontWeight: "bold",
-                          fontSize: "1.2rem",
+                      <Paper
+                        sx={{
+                          m: { xs: 0.7, sm: 1, md: 3 },
+                          px: { xs: 0.5, sm: 1, md: 3 },
+                          py: 2,
                         }}
-                        subheaderTypographyProps={{
-                          fontWeight: "bold",
-                          fontSize: "1.1rem",
-                        }}
-                      />
-
-                      <hr />
-                      <Grid
-                         className="row"
-                        sx={{ mt: 2 }}
-                        textAlign="left"
-                      
                       >
-                        {/* Route Info */}
-                        <Grid className="col-12">
-                          <Box display="flex">
-                            <Typography
-                              className="col-3"
-                              fontSize={{ xs: 16, sm: 18 }}
-                              fontWeight="bold"
-                              mr={1}
-                            >
-                              Route:
-                            </Typography>
-                            <Typography
-                              className="col"
-                              textAlign="center"
-                              fontSize={{ xs: 16, sm: 18 }}
-                            >
-                              {formik.values.origin.name} To{" "}
-                              {formik.values.destination.name}
-                            </Typography>
-                          </Box>
-                        </Grid>
+                        <CardHeader
+                          avatar={
+                            <Avatar sx={{ bgcolor: "#1976d2" }}>
+                              <DirectionsBusFilled />
+                            </Avatar>
+                          }
+                          title={
+                            busTypes?.find(
+                              (bus) =>
+                                bus?.Id ===
+                                listAvailableBus[activeBus]?.busTypeId
+                            )?.name
+                          }
+                          subheader={"Detail Info"}
+                          titleTypographyProps={{
+                            fontWeight: "bold",
+                            fontSize: "1.2rem",
+                          }}
+                          subheaderTypographyProps={{
+                            fontWeight: "bold",
+                            fontSize: "1.1rem",
+                          }}
+                        />
 
-                        {/* Departure Time */}
-                        <Grid className="col-12">
-                          <Box display="flex">
-                            <Typography
-                              className="col"
-                              fontSize={{ xs: 16, sm: 18 }}
-                              fontWeight="bold"
-                              mr={1}
-                            >
-                              Departure Time:
-                            </Typography>
-                            <Typography
-                              className="col"
-                              fontSize={{ xs: 16, sm: 18 }}
-                            >
-                              {`${
-                                typeof formik.values.departureTime === "number"
-                                  ? `${
-                                      departureTimes[
-                                        parseInt(formik.values.departureTime)
-                                      ].split("-")[1]
-                                    } (${
-                                      departureTimes[
-                                        parseInt(formik.values.departureTime)
-                                      ].split("-")[0]
-                                    }) `
-                                  : `${
-                                      customerPage
-                                        .changeTime({
-                                          time: formik.values.departureTime,
-                                        })
-                                        .split("-")[1]
-                                    } (${
-                                      customerPage
-                                        .changeTime({
-                                          time: formik.values.departureTime,
-                                        })
-                                        .split("-")[0]
-                                    })`
-                              } `}
-                            </Typography>
-                          </Box>
-                        </Grid>
+                        <hr />
+                        <Grid className="row" sx={{ mt: 2 }} textAlign="left">
+                          {/* Route Info */}
+                          <Grid className="col-12">
+                            <Box display="flex">
+                              <Typography
+                                className="col-3"
+                                fontSize={{ xs: 16, sm: 18 }}
+                                fontWeight="bold"
+                                mr={1}
+                              >
+                                Route:
+                              </Typography>
+                              <Typography
+                                className="col"
+                                textAlign="center"
+                                fontSize={{ xs: 16, sm: 18 }}
+                              >
+                                {formik.values.origin.name} To{" "}
+                                {formik.values.destination.name}
+                              </Typography>
+                            </Box>
+                          </Grid>
 
-                        {/* Travel Date */}
-                        <Grid className="col-12">
-                          <Box display="flex">
-                            <Typography
-                              className="col"
-                              fontSize={{ xs: 16, sm: 18 }}
-                              fontWeight="bold"
-                              mr={1}
-                            >
-                              Travel Date:
-                            </Typography>
-                            <Typography
-                              className="col"
-                              fontSize={{ xs: 16, sm: 18 }}
-                            >
-                              {customerPage.toEthiopianCalendar({
-                                date: new Date(
+                          {/* Departure Time */}
+                          <Grid className="col-12">
+                            <Box display="flex">
+                              <Typography
+                                className="col"
+                                fontSize={{ xs: 16, sm: 18 }}
+                                fontWeight="bold"
+                                mr={1}
+                              >
+                                Departure Time:
+                              </Typography>
+                              <Typography
+                                className="col"
+                                fontSize={{ xs: 16, sm: 18 }}
+                              >
+                                {`${
+                                  typeof formik.values.departureTime ===
+                                  "number"
+                                    ? `${
+                                        departureTimes[
+                                          parseInt(formik.values.departureTime)
+                                        ].split("-")[1]
+                                      } (${
+                                        departureTimes[
+                                          parseInt(formik.values.departureTime)
+                                        ].split("-")[0]
+                                      }) `
+                                    : `${
+                                        customerPage
+                                          .changeTime({
+                                            time: formik.values.departureTime,
+                                          })
+                                          .split("-")[1]
+                                      } (${
+                                        customerPage
+                                          .changeTime({
+                                            time: formik.values.departureTime,
+                                          })
+                                          .split("-")[0]
+                                      })`
+                                } `}
+                              </Typography>
+                            </Box>
+                          </Grid>
+
+                          {/* Travel Date */}
+                          <Grid className="col-12">
+                            <Box display="flex">
+                              <Typography
+                                className="col"
+                                fontSize={{ xs: 16, sm: 18 }}
+                                fontWeight="bold"
+                                mr={1}
+                              >
+                                Travel Date:
+                              </Typography>
+                              <Typography
+                                className="col"
+                                fontSize={{ xs: 16, sm: 18 }}
+                              >
+                                {customerPage.toEthiopianCalendar({
+                                  date: new Date(
+                                    calenderECtoGC(formik.values.travelDate)
+                                  ),
+                                })}{" "}
+                                ዓ.ም <br />
+                                {new Date(
                                   calenderECtoGC(formik.values.travelDate)
-                                ),
-                              })}{" "}
-                              ዓ.ም <br />
-                              {new Date(
-                                calenderECtoGC(formik.values.travelDate)
-                              ).toDateString()}{" "}
-                              A.D
-                            </Typography>
-                          </Box>
+                                ).toDateString()}{" "}
+                                A.D
+                              </Typography>
+                            </Box>
+                          </Grid>
+
+                          {/* Leaving Bus */}
+                          <Grid className="col-12">
+                            <Box display="flex">
+                              <Typography
+                                className="col"
+                                fontSize={{ xs: 16, sm: 18 }}
+                                fontWeight="bold"
+                                mr={1}
+                              >
+                                Leaving Bus:
+                              </Typography>
+                              <Typography
+                                className="col"
+                                fontSize={{ xs: 16, sm: 18 }}
+                              >
+                                {leaveBus[listAvailableBus[activeBus]?.bus - 1]}
+                              </Typography>
+                            </Box>
+                          </Grid>
                         </Grid>
 
-                        {/* Leaving Bus */}
-                        <Grid className="col-12">
-                          <Box display="flex">
-                            <Typography
-                              className="col"
-                              fontSize={{ xs: 16, sm: 18 }}
-                              fontWeight="bold"
-                              mr={1}
-                            >
-                              Leaving Bus:
-                            </Typography>
-                            <Typography
-                              className="col"
-                              fontSize={{ xs: 16, sm: 18 }}
-                            >
-                              {leaveBus[listAvailableBus[activeBus]?.bus - 1]}
-                            </Typography>
-                          </Box>
-                        </Grid>
-                      </Grid>
+                        {/* Passenger Details Section */}
+                        {passengers.map((p) => (
+                          <Box key={p.seatNumber} mt={2}>
+                            <Divider sx={{ my: 2, opacity: 1 }} />
+                            <Grid className="row" alignItems="center">
+                              {/* Seat icon and number */}
+                              <Grid
+                                className="col-3 col-sm-2"
+                                textAlign="center"
+                              >
+                                <Box>
+                                  <img
+                                    src="./images/car-seat.png"
+                                    alt="Seat"
+                                    width={30}
+                                    height={30}
+                                    style={{ maxWidth: "100%" }}
+                                  />
+                                  <Typography fontSize={{ xs: 14, sm: 16 }}>
+                                    <strong>No {p.seatNumber}</strong>
+                                  </Typography>
+                                </Box>
+                              </Grid>
 
-                      {/* Passenger Details Section */}
-                      {passengers.map((p) => (
-                        <Box key={p.seatNumber} mt={2}>
-                          <Divider sx={{ my: 2, opacity: 1 }} />
-                          <Grid  className="row"  alignItems="center">
-                            {/* Seat icon and number */}
-                            <Grid className="col-3 col-sm-2" textAlign="center">
-                              <Box>
-                                <img
-                                  src="./images/car-seat.png"
-                                  alt="Seat"
-                                  width={30}
-                                  height={30}
-                                  style={{ maxWidth: "100%" }}
-                                />
-                                <Typography fontSize={{ xs: 14, sm: 16 }}>
-                                  <strong>No {p.seatNumber}</strong>
-                                </Typography>
-                              </Box>
-                            </Grid>
-
-                            {/* Passenger info */}
-                            <Grid className="col-9 col-sm-10">
-                              <Grid  className="row">
-                                <Grid className="col-12">
-                                  <Box display="flex">
-                                    <Typography
-                                      fontSize={{ xs: 14, sm: 16 }}
-                                      fontWeight="bold"
-                                      mr={2}
-                                    >
-                                      Full Name:
-                                    </Typography>
-                                    <Typography fontSize={{ xs: 14, sm: 16 }}>
-                                      {p.name.toUpperCase()}
-                                    </Typography>
-                                  </Box>
-                                </Grid>
-                                <Grid className="col-12">
-                                  <Box display="flex">
-                                    <Typography
-                                      fontSize={{ xs: 14, sm: 16 }}
-                                      fontWeight="bold"
-                                      mr={2}
-                                    >
-                                      Phone No:
-                                    </Typography>
-                                    <Typography fontSize={{ xs: 14, sm: 16 }}>
-                                      +251{p.phone}
-                                    </Typography>
-                                  </Box>
+                              {/* Passenger info */}
+                              <Grid className="col-9 col-sm-10">
+                                <Grid className="row">
+                                  <Grid className="col-12">
+                                    <Box display="flex">
+                                      <Typography
+                                        fontSize={{ xs: 14, sm: 16 }}
+                                        fontWeight="bold"
+                                        mr={2}
+                                      >
+                                        Full Name:
+                                      </Typography>
+                                      <Typography fontSize={{ xs: 14, sm: 16 }}>
+                                        {p.name.toUpperCase()}
+                                      </Typography>
+                                    </Box>
+                                  </Grid>
+                                  <Grid className="col-12">
+                                    <Box display="flex">
+                                      <Typography
+                                        fontSize={{ xs: 14, sm: 16 }}
+                                        fontWeight="bold"
+                                        mr={2}
+                                      >
+                                        Phone No:
+                                      </Typography>
+                                      <Typography fontSize={{ xs: 14, sm: 16 }}>
+                                        +251{p.phone}
+                                      </Typography>
+                                    </Box>
+                                  </Grid>
                                 </Grid>
                               </Grid>
                             </Grid>
-                          </Grid>
-                        </Box>
-                      ))}
-                      <Divider sx={{ my: 2, opacity: 1 }} />
-                      <Grid container className="row" textAlign="left">
-                        {/* <Grid className="col-5">
+                          </Box>
+                        ))}
+                        <Divider sx={{ my: 2, opacity: 1 }} />
+                        <Grid container className="row" textAlign="left">
+                          {/* <Grid className="col-5">
                           Generate QR Code
                         </Grid> */}
-                        <Grid className="col-12">
-                          {" "}
-                          {/* Seats Selected */}
                           <Grid className="col-12">
-                            <Box display="flex">
-                              <Typography
-                                className="col"
-                                fontSize={{ xs: 16, sm: 18 }}
-                                fontWeight="bold"
-                                mr={1}
-                              >
-                                Total Seat:
-                              </Typography>
-                              <Typography
-                                className="col"
-                                fontSize={{ xs: 14, sm: 16 }}
-                              >
-                                <strong>{passengers.length}</strong>
-                              </Typography>
-                            </Box>
-                          </Grid>
-                          {/* Unit Price */}
-                          <Grid className="col-12">
-                            <Box display="flex">
-                              <Typography
-                                className="col"
-                                fontSize={{ xs: 16, sm: 18 }}
-                                fontWeight="bold"
-                                mr={1}
-                              >
-                                Unit Price:
-                              </Typography>
-                              <Typography
-                                className="col"
-                                fontSize={{ xs: 14, sm: 16 }}
-                              >
-                                <strong>
-                                  {Number(
-                                    buss.find(
-                                      (b) =>
-                                        b.Id === listAvailableBus[activeBus]?.Id
-                                    )?.basePrice
-                                  ).toLocaleString()}{" "}
-                                  Birr
-                                </strong>
-                              </Typography>
-                            </Box>
-                          </Grid>
-                          {/* Total Price */}
-                          <Grid className="col-12">
-                            <Box display="flex">
-                              <Typography
-                                className="col"
-                                fontSize={{ xs: 16, sm: 18 }}
-                                fontWeight="bold"
-                                mr={1}
-                              >
-                                Total Price:
-                              </Typography>
-                              <Typography
-                                className="col"
-                                fontSize={{ xs: 14, sm: 16 }}
-                              >
-                                <strong>
-                                  {(
-                                    passengers.length *
-                                    buss.find(
-                                      (b) =>
-                                        b.Id === listAvailableBus[activeBus]?.Id
-                                    )?.basePrice
-                                  ).toLocaleString()}{" "}
-                                  Birr
-                                </strong>
-                              </Typography>
-                            </Box>
+                            {" "}
+                            {/* Seats Selected */}
+                            <Grid className="col-12">
+                              <Box display="flex">
+                                <Typography
+                                  className="col"
+                                  fontSize={{ xs: 16, sm: 18 }}
+                                  fontWeight="bold"
+                                  mr={1}
+                                >
+                                  Total Seat:
+                                </Typography>
+                                <Typography
+                                  className="col"
+                                  fontSize={{ xs: 14, sm: 16 }}
+                                >
+                                  <strong>{passengers.length}</strong>
+                                </Typography>
+                              </Box>
+                            </Grid>
+                            {/* Unit Price */}
+                            <Grid className="col-12">
+                              <Box display="flex">
+                                <Typography
+                                  className="col"
+                                  fontSize={{ xs: 16, sm: 18 }}
+                                  fontWeight="bold"
+                                  mr={1}
+                                >
+                                  Unit Price:
+                                </Typography>
+                                <Typography
+                                  className="col"
+                                  fontSize={{ xs: 14, sm: 16 }}
+                                >
+                                  <strong>
+                                    {Number(
+                                      buss.find(
+                                        (b) =>
+                                          b.Id ===
+                                          listAvailableBus[activeBus]?.Id
+                                      )?.basePrice
+                                    ).toLocaleString()}{" "}
+                                    Birr
+                                  </strong>
+                                </Typography>
+                              </Box>
+                            </Grid>
+                            {/* Total Price */}
+                            <Grid className="col-12">
+                              <Box display="flex">
+                                <Typography
+                                  className="col"
+                                  fontSize={{ xs: 16, sm: 18 }}
+                                  fontWeight="bold"
+                                  mr={1}
+                                >
+                                  Total Price:
+                                </Typography>
+                                <Typography
+                                  className="col"
+                                  fontSize={{ xs: 14, sm: 16 }}
+                                >
+                                  <strong>
+                                    {(
+                                      passengers.length *
+                                      buss.find(
+                                        (b) =>
+                                          b.Id ===
+                                          listAvailableBus[activeBus]?.Id
+                                      )?.basePrice
+                                    ).toLocaleString()}{" "}
+                                    Birr
+                                  </strong>
+                                </Typography>
+                              </Box>
+                            </Grid>
                           </Grid>
                         </Grid>
-                      </Grid>
-                    </Paper>
-                  </Grid>
+                      </Paper>
+                    </Grid>
+                  </center>
                 </Grid>
               </Grid>
             )}
@@ -905,9 +917,11 @@ const CustomerBooking = ({
 
           {/* Navigation Controls */}
           <Grid className="col-12" mt={3}>
-            <Grid  className="row" justifyContent="space-between">
+            <Grid className="row" justifyContent="space-between">
               <Button
                 variant="contained"
+                className="col-6"
+                sx={{ width: 120 }}
                 disabled={activeStep === 0}
                 onClick={() => setActiveStep((prev) => prev - 1)}
               >
@@ -918,6 +932,8 @@ const CustomerBooking = ({
                 <Button
                   variant="contained"
                   color="success"
+                  className="col-6"
+                  sx={{ width: 120 }}
                   onClick={formik.handleSubmit}
                   //  disabled={bookingConfirmed}
                 >
@@ -927,6 +943,8 @@ const CustomerBooking = ({
               ) : (
                 <Button
                   variant="contained"
+                  className="col-6"
+                  sx={{ width: 120 }}
                   onClick={async () => {
                     if (activeStep === 0) {
                       let seats = availableSeatNumbers.filter(

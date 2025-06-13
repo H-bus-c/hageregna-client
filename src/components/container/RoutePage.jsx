@@ -94,7 +94,7 @@ const RoutePage = () => {
             setIsLoading(false);
             return;
           }
-          values.distance = Number(values.distance).toPrecision(1);
+          values.distance = Number(values.distance).toFixed();
           values.duration = (Number(values.distance) / 40).toFixed(2);
           const time = values.duration.toString().split(".");
           let minuets = (Number(time[1]) * 60) / 100;
