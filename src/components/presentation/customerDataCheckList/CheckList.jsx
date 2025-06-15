@@ -32,31 +32,29 @@ const PassengerCard = React.memo(({ p, index, setCustomerData }) => {
           {p.name}
         </Typography>
         <Grid container className="row">
-          <Grid className="col-12" lg={8}>
+          <Grid className="col-12 col-lg-8" >
             <Grid container className="row">
-              <Grid sm={5}>
-                <Typography variant="body1">
+             
+                <Typography variant="body1" className="col-5">
                   <strong>📞 Phone :</strong>
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" className="col-7">+251{p.phone}</Typography>
+                <Typography variant="body1" className="col-5">
                   <strong>🎟 Ticket :</strong>
                 </Typography>
-                <Typography variant="body1">
-                  <strong>🪑 Seat :</strong>
-                </Typography>
-              </Grid>
-              <Grid sm={7}>
-                <Typography variant="body1">+251{p.phone}</Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" className="col-7">
                   {p.ticketNumber?.match(/.{1,4}/g)?.join("−")}
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" className="col-5">
+                  <strong>🪑 Seat :</strong>
+                </Typography>
+                <Typography variant="body1" className="col-7">
                   <b>{p.seatNumber}</b>
                 </Typography>
-              </Grid>
+              
             </Grid>
           </Grid>
-          <Grid className="col-12" lg={4}>
+          <Grid className="col-12 col-lg-4" >
             <FormControlLabel
               control={
                 <Checkbox checked={p.isAvailable} onClick={toggleAvailable} />
@@ -85,7 +83,7 @@ const CheckList = ({
   const renderedCustomers = useMemo(
     () =>
       customerData.map((p, index) => (
-        <Grid className="col-12" md={6} key={index}>
+        <Grid className="col-12 col-sm-9 col-md-6 mb-2 text-align-center" key={index}>
           <PassengerCard
             p={p}
             index={index}
@@ -97,7 +95,7 @@ const CheckList = ({
   );
 
   return (
-    <Box maxWidth={1000} sx={{ my: 4, overflow: "auto" }}>
+    <Box maxWidth={1200} sx={{ my: 4, overflow: "auto" }}>
       <Paper
         sx={{ p: 2, minWidth: 355, background: "rgba(255, 255, 255, 0.8)" }}
       >
@@ -105,7 +103,7 @@ const CheckList = ({
           🧾 Car Attendant
         </Typography>
         <Grid container className="row" justifyContent="center">
-          <Grid className="col-11" sm={6} md={4}>
+          <Grid className="mb-2 col-11 col-sm-6 col-lg-4">
             <Autocomplete
               options={routes}
               getOptionLabel={(option) => {
@@ -131,7 +129,7 @@ const CheckList = ({
               )}
             />
           </Grid>
-          <Grid className="col-11" sm={6} md={4}>
+          <Grid className="mb-2 col-11 col-sm-6 col-lg-3">
             <TextField
               fullWidth
               size="small"
@@ -161,7 +159,7 @@ const CheckList = ({
               ))}
             </TextField>
           </Grid>
-          <Grid className="col-11" sm={6} md={2}>
+          <Grid className="mb-2 col-11 col-sm-6 col-lg-3">
             <TextField
               fullWidth
               size="small"
@@ -183,7 +181,7 @@ const CheckList = ({
               ))}
             </TextField>
           </Grid>
-          <Grid className="col-11" sm={6} md={2}>
+          <Grid className="mb-2 col-11 col-sm-6 col-lg-2">
             <Button
               fullWidth
               variant="contained"
@@ -206,9 +204,8 @@ const CheckList = ({
         </Grid>
 
         <hr />
-
         {customerData.length > 0 ? (
-          <Box pt={2} sx={{ width: isMobile ? "350px" : "auto" }}>
+          <Box pt={2}>
             <form onSubmit={formik.handleSubmit}>
               <Typography variant="h6" gutterBottom>
                 Passengers for:

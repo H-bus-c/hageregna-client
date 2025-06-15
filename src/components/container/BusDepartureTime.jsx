@@ -135,6 +135,15 @@ const BusDepartureTime = () => {
       validationSchema,
       onSubmit: async values => {
          values.departureTime = { data: [] };
+         const checkRoute = busDepartureTimes.find(b => b.routeId === values.routeId);
+         if (checkRoute) {
+            setAlertMessage(
+              "Can't duplicate the route!"
+            );
+            setAlertOpen(true);
+            setAlertType("error");
+            return;
+         }
          for (let i = 0; i < departureTimes.length; i++) {
             values.departureTime.data.push(departureTimes[i]);
             values.departureTime.data.push(busNumbers[i]);
@@ -245,7 +254,20 @@ const BusDepartureTime = () => {
       setDepartureTimes(departureTime);
       setOpenCreatePage(true);
    };
-   const handleDelete = id => {};
+   const handleDelete = async(id) => {
+       setIsLoading(true);
+          try {
+             let deleteBus = busDepartureTimes.find((bus) => bus.Id === id);
+          deleteBus.statusId = 2;
+         await updateBusDepartureTime(deleteBus);
+          setAlertMessage("Bus Departure Time Data Delete Successfully!");
+          setAlertOpen(true);
+          setAlertType("success");
+          } catch (error) {
+            setIsError(true);
+          }
+          setIsLoading(false);
+   };
    // reduce performance
    const handleAddDeparture = () => {
       setDepartureTimes([...departureTimes, '']);

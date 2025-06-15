@@ -165,7 +165,7 @@ const CustomerDataCheckList = () => {
          formik.setFieldValue('bus', '');
          return setBusGoesOut([]);
       }
-      const departureTime = busDepartureTimes.find(d => d.routeId === formik.values.routeId.Id)
+      const departureTime = busDepartureTimes.find(d => d.routeId === formik.values.routeId?.Id)
          ?.departureTime?.data;
       let leaveBus = [
          'First',

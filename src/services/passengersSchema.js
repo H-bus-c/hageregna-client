@@ -6,7 +6,7 @@ const passengerSchema = Yup.object().shape({
       /^[A-Za-z]+\s[A-Za-z]+$/,
       "Full name should be at least two words."
     )
-    .min(7, "Too Short!")
+    .min(5, "Too Short!")
     .max(50, "Too Long")
     .required("Full name is required."),
   phone: Yup.string()
