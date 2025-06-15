@@ -412,9 +412,9 @@ const Header = () => {
                 <Typography variant={isUnderMobile ? "h6" : "h5"}>
                   {checkUserData
                     ? checkUserData.roleId === 1
-                      ? "Hageregna Bus"
+                      ? "Hageregna"
                       : busTypes.find((b) => b.userId === checkUserData.admin)?.name
-                    : "Hageregna Bus"}
+                    : "Hageregna"}
                 </Typography>
               )}
             </Logo>

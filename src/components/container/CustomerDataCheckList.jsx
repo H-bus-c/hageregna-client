@@ -98,10 +98,9 @@ const CustomerDataCheckList = () => {
       return bus;
    }, [busData, busType, loginUser]);
    const reserves = useMemo(() => {
-      const serverDate = new Date(new Date(dates).setDate(new Date(dates).getDate()-3))
+      const serverDate = new Date(dates)
       const reserve = reserveData.filter(r => {
          const reserveDate = new Date(r.scheduleDate);
-         
          return (
             r.busTypeId === busType?.Id &&
             new Date(
